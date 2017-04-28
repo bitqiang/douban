@@ -3,10 +3,12 @@
     <router-view></router-view>
   </div>
 </template>
-
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  created(){
+    this.$router.push({path:'/book/index'})
+  }
 }
 </script>
 
