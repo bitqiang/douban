@@ -5,24 +5,45 @@
       <p>前端书籍</p>
       <p>更多</p>
     </div>
-    <div class="webBook">
-      <div class="web" v-for='(index,item) in 10'>
-        <div class="book">
-          
+    <div class="outBook">
+      <div class="webBook">
+        <div class="web" v-for='(item,index) in homeData'>
+          <div class="book">
+            <img :src="item.image">
+            <p>{{item.title}}</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import store from 'vuex'
 import header from '../../components/header.vue'
 export default {
   name: 'book-index',
+  data() {
+    return {
+      homeData: [{
+        image: ''
+      }]
+    }
+  },
   components: {
     'v-header': header
   },
-  mounted(){
-    
+  mounted() {
+    var _this = this
+    this.$http.get('/api/book/search?q=前端')
+      .then(function(response) {
+        //console.log(response.data);
+        _this.$store.commit('HOME_DATA', response.data.books)
+        _this.homeData = _this.$store.state.home.homeData;
+        console.log(_this.homeData)
+      })
+      .catch(function(error) {
+        console.log(error)
+      });
   }
 }
 </script>
@@ -43,19 +64,35 @@ export default {
     color: #42bd56;
   }
 }
-.webBook{
+.outBook {
+  height: 11.1rem;
+  overflow: hidden;
+}
+
+.webBook {
+  height: 11rem;
   display: flex;
   width: 100%;
+  height: 9.1rem;
   background: #fff;
-  overflow:hidden;
+ overflow: hidden; 
   overflow-x: scroll;
   padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-bottom: 2rem;
 }
-.book{
+
+.book {
   margin-left: 10px;
-  height: 200px;
-  width: 100px;
-  background: red;
+  background: #red;
+  width: 6rem;
+  height: 8rem;
+  p {
+    font-size: 0.94rem;
+  }
+}
+
+img {
+  width: 100%;
+  height: 100%;
 }
 </style>
