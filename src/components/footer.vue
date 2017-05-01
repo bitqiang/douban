@@ -7,7 +7,7 @@
         <p>我们的精神部落</p>
       </div>
     </div>
-    <a href="http://bitqiang.win/">去github查看源码</a>
+    <a href="https://github.com/bitqiang/douban">去github查看源码</a>
   </div>
 </template>
 <script>
