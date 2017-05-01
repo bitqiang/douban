@@ -1,98 +1,44 @@
 <template>
   <div id="app">
     <v-header></v-header>
-    <div class="title">
-      <p>前端书籍</p>
-      <p>更多</p>
-    </div>
-    <div class="outBook">
-      <div class="webBook">
-        <div class="web" v-for='(item,index) in homeData'>
-          <div class="book">
-            <img :src="item.image">
-            <p>{{item.title}}</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <bookWebList class='book_list' bookName='前端书籍'></bookWebList>
+    <bookEndList class='book_list' bookName='后端书籍'></bookEndList>
+    <booShop class='book_list' bookName='豆瓣书店'></booShop>
+    <bookFind class='book_list' bookName='发现好图书'></bookFind>
+    <classification></classification>
+    <v-footer></v-footer>
   </div>
 </template>
 <script>
-import store from 'vuex'
+import book_web_List from '../../components/book_Web_List.vue'
+import book_end_List from '../../components/book_End_List.vue'
+import book_shop from '../../components/book_shop.vue'
 import header from '../../components/header.vue'
+import book_find from '../../components/book_find.vue'
+import classification from '../../components/classification.vue'
+import footer from '../../components/footer.vue'
 export default {
   name: 'book-index',
   data() {
     return {
       homeData: [{
-        image: ''
-      }]
+        rating: {}
+      }],
     }
   },
   components: {
-    'v-header': header
+    'v-header': header,
+    bookWebList: book_web_List,
+    bookEndList: book_end_List,
+    booShop: book_shop,
+    bookFind: book_find,
+    classification,
+    'v-footer': footer
   },
-  mounted() {
-    var _this = this
-    this.$http.get('/api/book/search?q=前端')
-      .then(function(response) {
-        //console.log(response.data);
-        _this.$store.commit('HOME_DATA', response.data.books)
-        _this.homeData = _this.$store.state.home.homeData;
-        console.log(_this.homeData)
-      })
-      .catch(function(error) {
-        console.log(error)
-      });
-  }
 }
 </script>
 <style scoped lang='scss'>
-.title {
-  display: flex;
-  justify-content: space-between;
-  p {
-    font-size: 1.06rem;
-    padding-top: 0.8rem;
-  }
-  p:nth-child(1) {
-    padding-left: 1rem;
-    font-weight: 500;
-  }
-  p:nth-child(2) {
-    padding-right: 1rem;
-    color: #42bd56;
-  }
-}
-.outBook {
-  height: 11.1rem;
-  overflow: hidden;
-}
-
-.webBook {
-  height: 11rem;
-  display: flex;
-  width: 100%;
-  height: 9.1rem;
-  background: #fff;
- overflow: hidden; 
-  overflow-x: scroll;
-  padding-top: 1rem;
-  padding-bottom: 2rem;
-}
-
-.book {
-  margin-left: 10px;
-  background: #red;
-  width: 6rem;
-  height: 8rem;
-  p {
-    font-size: 0.94rem;
-  }
-}
-
-img {
-  width: 100%;
-  height: 100%;
+.book_list {
+  margin-bottom: 1.5rem;
 }
 </style>

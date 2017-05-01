@@ -6,20 +6,25 @@ function getCurrentUser() {
 }
 
 const state = {
-  homeData: {}
+  WebDataBook: {},
+  EndDataBook:{},
+  lifeBook:{}
 };
 
 const getters = {};
 
 const actions = {
-   [HOME_DATA]({ commit }) {
-    commit(HOME_DATA,getCurrentUser())
+   async  [HOME_DATA]({ commit }) {
+    const user = await getCurrentUser();
+    commit(HOME_DATA,user)
   }
 };
 
 const mutations  = {
-  [HOME_DATA](state, homeData) {
-    state.homeData = homeData;
+  [HOME_DATA](state, Book) {
+    state.WebDataBook = Book;
+    state.EndDataBook = Book;
+    state.lifeBook = Book;
   }
 };
 
