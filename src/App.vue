@@ -7,7 +7,7 @@
 export default {
   name: 'app',
   created(){
-    this.$router.push({path:'/book/index'})
+    this.$router.push({path:'/book/26433805'})
   }
 }
 </script>

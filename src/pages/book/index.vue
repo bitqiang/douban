@@ -2,11 +2,11 @@
   <div id="app">
     <v-header></v-header>
     <bookWebList class='book_list' bookName='前端书籍'></bookWebList>
-    <bookEndList class='book_list' bookName='后端书籍'></bookEndList>
-    <booShop class='book_list' bookName='豆瓣书店'></booShop>
-    <bookFind class='book_list' bookName='发现好图书'></bookFind>
-    <classification></classification>
-    <v-footer></v-footer>
+<!--     <bookEndList class='book_list' bookName='后端书籍'></bookEndList>
+<booShop class='book_list' bookName='豆瓣书店'></booShop>
+<bookFind class='book_list' bookName='发现好图书'></bookFind>
+<classification></classification>
+<v-footer></v-footer> -->
   </div>
 </template>
 <script>

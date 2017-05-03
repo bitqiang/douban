@@ -6,7 +6,7 @@
     </div>
     <div class="outBook">
       <div class="webBook">
-        <div class="web" v-for='(item,index) in homeData'>
+        <div class="web" v-for='(item,index) in homeData' @click='showBookMsg(item.id)'>
           <div class="book">
             <img :src="item.image">
             <p>{{item.title}}</p>
@@ -22,8 +22,8 @@ import store from 'vuex'
 import star from './star/star.vue'
 export default {
   name: 'book-index',
-  props:['bookName',]
-  ,/*/api/book/search?q=前端*/
+  props: ['bookName', ],
+  /*/api/book/search?q=前端*/
   data() {
     return {
       homeData: [{
@@ -36,7 +36,6 @@ export default {
   },
   mounted() {
     var _this = this
-    let url = this.url;
     this.$http.get('/api/book/search?q=前端')
       .then(function(response) {
         //console.log(response.data);
@@ -47,6 +46,14 @@ export default {
       .catch(function(error) {
         console.log(error)
       });
+  },
+  methods: {
+    showBookMsg(str) {
+      const path = '/book/' + str
+      this.$router.push({
+        path: path
+      })
+    }
   }
 }
 </script>

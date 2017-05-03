@@ -25,6 +25,10 @@ export default {
   display: flex;
   padding-bottom: 0.5rem;
   @include border-1px(#e4e1e1);
+  &:after{
+    left: 0;
+    bottom: 0;
+  };
 }
 
 p {
